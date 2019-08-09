@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rounded_layout"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp">
+
+        <TextView
+            android:id="@+id/tvAds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center_vertical"
+            android:text="@string/ads"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#231F20"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/ivClose"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_gravity="end|center_vertical"
+            android:adjustViewBounds="true" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/btnPrevious"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_gravity="center_vertical"
+            android:padding="4dp"
+            android:rotation="180" />
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/ivApp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="16dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/noname" />
+
+            <ImageView
+                android:id="@+id/ivLogo"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:adjustViewBounds="true"
+                android:padding="8dp" />
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/btnNext"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_gravity="center_vertical"
+            android:padding="4dp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvInstall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:paddingStart="16dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="4dp"
+        android:text="I&#032;N&#032;S&#032;T&#032;A&#032;L&#032;L"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#ffffff"
+        android:textStyle="bold" />
+</LinearLayout>
