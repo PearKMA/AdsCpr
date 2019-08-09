@@ -23,7 +23,7 @@ public class InterstitialAd {
     private AdsIntersitialAd ads;   //dialog quảng cáo
     private Activity a;
     private boolean ready = false;  //Kiểm tra tính sẵn sàng để hiện dialog
-    
+
     /**
      * Constructor
      *

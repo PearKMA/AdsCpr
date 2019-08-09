@@ -24,5 +24,10 @@
         android:id="@+id/maincont"
         android:layout_height="wrap_content">
 
+        <com.cpr.ads.module.BannerAds
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </com.cpr.ads.module.BannerAds>
     </FrameLayout>
 </LinearLayout>
