@@ -11,7 +11,7 @@ public class RetrofitClientInstance {
     private static final String BASE_URL = "http://cprcorp.com/cprsoftware/";
 
     /**
-     * Khởi tạo Retrofit
+     * Khởi tạo Retrofit theo Singleton pattern
      *
      * @return retrofit
      */

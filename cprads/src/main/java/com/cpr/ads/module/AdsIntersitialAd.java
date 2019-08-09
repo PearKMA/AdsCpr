@@ -34,6 +34,10 @@ import com.cpr.ads.model.ItemData;
 
 import java.util.ArrayList;
 
+/**
+ * Dialog hiện các quảng cáo
+ * được gọi khi lấy được thông tin về các quảng cáo xong
+ */
 public class AdsIntersitialAd extends Dialog {
     private Activity c;
     private ImageView ivClose, ivPrevious, ivNext, ivCover, ivLogo;
@@ -48,11 +52,34 @@ public class AdsIntersitialAd extends Dialog {
     private String appPackageName;
     private Runnable mRun;
 
+    /**
+     * constructor dialog
+     *
+     * @param context activity
+     */
     public AdsIntersitialAd(@NonNull Activity context) {
         super(context);
         this.c = context;
     }
 
+    /**
+     * Chuyển đổi dp thành pixel
+     *
+     * @param dp      dp
+     * @param context context
+     * @return pixel
+     */
+    private static int convertDpToPixel(float dp, Context context) {
+        Resources resources = context.getResources();
+        DisplayMetrics metrics = resources.getDisplayMetrics();
+        float px = dp * (metrics.densityDpi / 160f);
+        return (int) px;
+    }
+
+    /**
+     * Khởi tạo các view, sự kiện xảy ra khi hiện
+     * @param savedInstanceState lưu lại
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,22 +95,23 @@ public class AdsIntersitialAd extends Dialog {
             addEvents();
         }
     }
+
+    /**
+     * Gửi list chứa thông tin quảng cáo
+     * @param list list item data
+     */
     public void setList(ArrayList<ItemData> list){
         this.list = list;
     }
 
+    /**
+     * khi dialog được hiện lên
+     */
     public void onShow(){
         if (mRun != null) {
             handler.post(mRun);
         }
     }
-    public void onDismiss(){
-        if (mRun != null) {
-            handler.removeCallbacks(mRun);
-        }
-        list.clear();
-    }
-
 
 
     /**
@@ -201,6 +229,20 @@ public class AdsIntersitialAd extends Dialog {
         });
     }
 
+    /**
+     * Khi dialog bị dismiss
+     */
+    public void onDismiss() {
+        if (mRun != null) {
+            handler.removeCallbacks(mRun);
+        }
+        list.clear();
+    }
+
+    /**
+     * Gán id cho view
+     * Khởi tạo các biến runnable cần thiết, animation
+     */
     private void addControls() {
         ivClose = findViewById(R.id.ivClose);
         ivCover = findViewById(R.id.ivApp);
@@ -292,13 +334,10 @@ public class AdsIntersitialAd extends Dialog {
         };
     }
 
-    private static int convertDpToPixel(float dp, Context context) {
-        Resources resources = context.getResources();
-        DisplayMetrics metrics = resources.getDisplayMetrics();
-        float px = dp * (metrics.densityDpi / 160f);
-        return (int) px;
-    }
-
+    /**
+     * Sửa kích cỡ dialog, ảnh background cho từng màn hình,
+     * Load ảnh vào các view
+     */
     private void loadImageIntoView() {
         //load image
         if (c != null) {

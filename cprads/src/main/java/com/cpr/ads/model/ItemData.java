@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 /**
  * @author Created by Pear on 8/2/2019.
- * Item lấy được từ API
+ * Item từng phần data lấy được từ API
  */
 public class ItemData {
     private String cover;

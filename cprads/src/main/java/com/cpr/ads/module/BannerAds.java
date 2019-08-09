@@ -29,6 +29,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * Quảng cáo dạng banner
+ */
 public class BannerAds extends LinearLayout {
     private LinearLayout container;
     private ImageView ivLogo;
@@ -40,21 +43,39 @@ public class BannerAds extends LinearLayout {
     private String appPackageName;
     private Handler handle, handleCheck;
 
+    /**
+     * Constructor khi thêm bằng code
+     *
+     * @param context activity
+     */
     public BannerAds(Context context) {
         super(context);
         initView(context, null);
     }
 
+    /**
+     * Constructor khi tạo trên xml
+     * @param context activity
+     * @param attrs thuộc tính thêm
+     */
     public BannerAds(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         initView(context, attrs);
     }
 
+    /**
+     * Constructor khi tạo trên xml
+     * @param context activity
+     * @param attrs thuộc tính thêm
+     */
     public BannerAds(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initView(context, attrs);
     }
 
+    /**
+     * Chay retrofit để lấy thông tin api
+     */
     private void setupRetrofit() {
         IGetApi api = RetrofitClientInstance.getRetrofitInstance().create(IGetApi.class);
         Call<ListData> call = api.getListData();
@@ -78,6 +99,10 @@ public class BannerAds extends LinearLayout {
         });
     }
 
+    /**
+     * Thông tin lấy được khi retrofit trả kết quả về
+     * @param data
+     */
     private void getInfo(List<ItemData> data) {
         if (data != null && data.size() > 0) {
             listItem = (ArrayList<ItemData>) data;
@@ -88,6 +113,11 @@ public class BannerAds extends LinearLayout {
         }
     }
 
+    /**
+     * Tạo các sự kiện, xử lý
+     * @param context   activity
+     * @param attrs thuộc tính khi thêm bởi xml
+     */
     private void initView(final Context context, AttributeSet attrs) {
         inflate(context, R.layout.layout_banner_ads, this);
         ivLogo = findViewById(R.id.ivLogo);
@@ -206,6 +236,10 @@ public class BannerAds extends LinearLayout {
         btnInstall.setBackground(gdtext);
     }
 
+    /**
+     * Khi bị gỡ khỏi activity
+     * gỡ các handle
+     */
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
@@ -217,6 +251,10 @@ public class BannerAds extends LinearLayout {
         }
     }
 
+    /**
+     * Khi được gán vào activity
+     * Bắt dầu chạy animation
+     */
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
