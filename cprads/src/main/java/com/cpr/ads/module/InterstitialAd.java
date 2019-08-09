@@ -2,7 +2,7 @@ package com.cpr.ads.module;
 
 import android.app.Activity;
 import android.content.DialogInterface;
-import android.util.Log;
+import android.content.pm.PackageManager;
 
 import com.cpr.ads.Utils.RetrofitClientInstance;
 import com.cpr.ads.interfaces.IGetApi;
@@ -65,11 +65,19 @@ public class InterstitialAd {
     }
 
     private void getInfo(List<ItemData> data) {
-        ready = true;
+        ArrayList<ItemData> list = new ArrayList<>();
+        for (ItemData itemData : data) {
+            if (!isPackageInstalled(itemData.getJsonMemberPackage(), a.getPackageManager())) {
+                list.add(itemData);
+            }
+        }
+        if (list.size() > 0) {
+            ready = true;
+        }
         if (ads==null) {
             ads = new AdsIntersitialAd(a);
         }
-        ads.setList((ArrayList<ItemData>) data);
+        ads.setList(list);
         ads.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface dialog) {
@@ -83,5 +91,15 @@ public class InterstitialAd {
                 setupRetrofit();
             }
         });
+    }
+
+    private boolean isPackageInstalled(String packageName, PackageManager packageManager) {
+        boolean found = true;
+        try {
+            packageManager.getPackageInfo(packageName, 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            found = false;
+        }
+        return found;
     }
 }
